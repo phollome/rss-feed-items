@@ -1,0 +1,8 @@
+{
+  "name": "rss-feed-items",
+  "version": "0.1.0",
+  "description": "Get items from rss feed",
+  "main": "index.js",
+  "author": "Peter Holló <hello@songsforthe.dev>",
+  "license": "MIT"
+}
