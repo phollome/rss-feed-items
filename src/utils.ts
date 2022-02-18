@@ -1,4 +1,5 @@
 import type { Item } from "./types";
+import * as https from "https";
 
 import { XMLParser } from "fast-xml-parser";
 
@@ -41,4 +42,18 @@ export function getItems(xml: string): Array<Item> {
   });
 
   return cleanedItems;
+}
+
+export function fetch(url) {
+  return new Promise((resolve, reject) => {
+    https
+      .get(url, (res) => {
+        let body = "";
+        res.on("data", (chunk) => {
+          body += chunk;
+        });
+        res.on("end", () => resolve(body));
+      })
+      .on("error", (err) => reject(err));
+  });
 }
