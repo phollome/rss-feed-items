@@ -2,22 +2,22 @@
   "name": "rss-feed-items",
   "version": "0.1.0",
   "description": "Get items from rss feed",
-  "main": "dist/index.js",
+  "main": "index.js",
   "author": "Peter Holló <hello@songsforthe.dev>",
   "license": "MIT",
   "scripts": {
-    "start": "tsnd --respawn ./src/index.ts"
+    "start": "tsnd --respawn ./src/index.ts",
+    "build": "node scripts/build.js"
   },
   "typings": "./types/index.d.ts",
   "devDependencies": {
     "@types/jest": "^27.4.0",
     "@types/node": "^17.0.16",
+    "esbuild": "^0.14.22",
+    "esbuild-node-externals": "^1.4.1",
     "jest": "^27.5.0",
     "ts-jest": "^27.1.3",
     "ts-node-dev": "^1.1.8",
-    "typescript": "^4.5.5"
-  },
-  "dependencies": {
     "fast-xml-parser": "^4.0.2"
   }
 }
