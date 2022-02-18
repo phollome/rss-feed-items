@@ -8,10 +8,16 @@ const feedUrl = process.env.FEED_URL;
 if (feedUrl === undefined) {
   throw new Error("environment variable FEED_ENV needs to be set");
 }
+const itemsLimit = process.env.ITEMS_LIMIT;
 
 async function main() {
   const xml = (await fetch(feedUrl)) as string;
-  const items = getItems(xml);
+
+  let limit: number | undefined;
+  if (itemsLimit !== undefined) {
+    limit = parseInt(itemsLimit);
+  }
+  const items = getItems(xml, limit);
 
   await writeFile("./items.json", JSON.stringify(items), "utf-8");
 }

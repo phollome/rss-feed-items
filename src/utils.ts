@@ -22,7 +22,7 @@ export function removeHtmlTags(string: string): string {
   return string.replace(/(<([^>]+)>)/gi, "");
 }
 
-export function getItems(xml: string): Array<Item> {
+export function getItems(xml: string, limit: number = -1): Array<Item> {
   const document = parser.parse(xml);
   const itemsMap = document.rss.channel.item;
 
@@ -31,6 +31,10 @@ export function getItems(xml: string): Array<Item> {
     items = itemsMap;
   } else {
     items.push(itemsMap);
+  }
+
+  if (limit > -1) {
+    items = items.slice(0, limit);
   }
 
   const cleanedItems = items.map((item) => {

@@ -85,3 +85,35 @@ test("remove html from description", () => {
     link,
   });
 });
+
+test("limit number of items", () => {
+  const limit = 2;
+  const xml = `
+    <rss>
+      <channel>
+        <item>
+          <title>${title}1</title>
+          <description><p>${description}</p></description>
+          <pubDate>${pubDate}</pubDate>
+          <link>${link}</link>
+        </item>
+        <item>
+          <title>${title}2</title>
+          <description><p>${description}</p></description>
+          <pubDate>${pubDate}</pubDate>
+          <link>${link}</link>
+        </item>
+        <item>
+          <title>${title}3</title>
+          <description><p>${description}</p></description>
+          <pubDate>${pubDate}</pubDate>
+          <link>${link}</link>
+        </item>
+      </channel>
+    </rss>
+  `;
+  const items = getItems(xml, limit);
+  expect(items.length).toBe(limit);
+  expect(items[0].title).toBe(`${title}1`);
+  expect(items[1].title).toBe(`${title}2`);
+});
